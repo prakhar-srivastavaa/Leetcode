@@ -1,3 +1,4 @@
+// sloving through linear search in time of O(n)
 class Solution {
 public:
     int peakIndexInMountainArray(vector<int>& arr) {

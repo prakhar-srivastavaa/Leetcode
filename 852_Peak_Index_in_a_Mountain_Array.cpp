@@ -1,4 +1,4 @@
-// binary search O(log n)
+// binary search O(log n).
 class Solution {
 public:
     int peakIndexInMountainArray(vector<int>& arr) {

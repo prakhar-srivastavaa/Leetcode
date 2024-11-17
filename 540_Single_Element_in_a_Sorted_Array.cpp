@@ -9,7 +9,7 @@ public:
         while(start<=end){
             int mid = start+(end-start)/2;
             if (mid==0&&nums[0]!= nums[1]) return nums[mid];
-            if (nums[mid]!=nums[mid-1]&&nums[mid]!=nums[mid+1]){
+            if (nums[mid]!=nums[mid-1]&&nums[mid]!=nums[mid+1]){// result
                 return nums[mid];
             }
             else if (mid%2==0){//even

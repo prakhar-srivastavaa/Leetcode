@@ -1,15 +1,26 @@
 function majorityElement(nums: number[]): number {
     let n=nums.length/2;
-    for (let i =0;i<nums.length;i++){
-        let count =1;
-        for (let j=1;j<nums.length;j++){
-            if(nums[i]==nums[j]){
-                count++;
-            }
+    let count =0;
+    let el;
+    for (let i= 0;i<nums.length;i++){
+        // 34 3
+        if(count ==0){
+            count=1;
+            el=nums[i];
         }
-        if(count>n){
-            return nums[i]
+        else if(nums[i]==el){
+            count++;
         }
+        else{
+            count--;
+        }
+    } 
+    // chceking n/2
+    let count1=0;
+    for(let i=0;i<nums.length;i++){
+        if(nums[i]==el) count1++;
     }
-    return -1;
+    if(count1>n){ return el;}
+    
+
 };

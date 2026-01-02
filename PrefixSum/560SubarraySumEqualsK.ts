@@ -1,18 +1,16 @@
 function subarraySum(nums: number[], k: number): number {
   let count = 0;
-  let currentSum = 0;
-  const prefixSumCount = new Map<number, number>();
-  prefixSumCount.set(0, 1);  // Base case: A sum of zero is encountered once
+  let n= nums.length;
+  let currentsum=0;
+  const prefixsumcount=new Map<number, number>();
+  prefixsumcount.set(0,1);
+for(const num of nums){
+    currentsum +=num;//freq of prefixsumm of all
+    if(prefixsumcount.has(currentsum-k)){
+        count +=prefixsumcount.get(currentsum-k)!;//adding the freq of prefixsum 
+    } 
+    prefixsumcount.set(currentsum,(prefixsumcount.get(currentsum)??0)+1)
+}
+return count;
 
-  // Iterate through each number in the array
-  for (const num of nums) {
-    currentSum += num;  // Update the cumulative sum
-    // Check if there is a subarray (ending at current index) which has the sum of k
-    if (prefixSumCount.has(currentSum - k)) {
-      count += prefixSumCount.get(currentSum - k)!;
-    }
-    // Record the current cumulative sum in the hashmap
-    prefixSumCount.set(currentSum, (prefixSumCount.get(currentSum) ?? 0) + 1);
-  }
-  return count;
 }

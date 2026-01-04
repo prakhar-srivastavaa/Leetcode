@@ -1,20 +1,22 @@
 function findMaxLength(nums: number[]): number {
-    const sumIndexMap = new Map<number, number>();
-    sumIndexMap.set(0, -1); // base case
-
-    let maxLength = 0;
-    let runningSum = 0;
-
-    for (let i = 0; i < nums.length; i++) {
-        runningSum += nums[i] === 0 ? -1 : 1;
-
-        if (sumIndexMap.has(runningSum)) {
-            const prevIndex = sumIndexMap.get(runningSum)!;
-            maxLength = Math.max(maxLength, i - prevIndex);
-        } else {
-            sumIndexMap.set(runningSum, i);
+    for(let i=0; i<nums.length;i++){
+        if(nums[i]==0){
+            nums[i]=-1;
         }
     }
-
-    return maxLength;
+    let sum=0;
+    let maxsum=0;
+    const mapp= new Map<number,number>();//map=set,has,get
+    mapp.set(0,-1);
+    for(let i=0;i<nums.length;i++){
+        sum+=nums[i];
+        if(mapp.has(sum)){
+            let last=mapp.get(sum);
+            maxsum = Math.max(maxsum,i-last);
+        }
+        else{
+            mapp.set(sum,i)
+        }
+    }
+        return maxsum;
 }

@@ -1,28 +1,27 @@
 function findAnagrams(s: string, p: string): number[] {
-    const result: number[] =[]
-    if(s.length<p.length) return result;
-    const pcount: number[]= new Array(26).fill(0);
-    const scount: number[]= new Array(26).fill(0);
-    
-    for(let i=0;i<p.length;i++){
-        pcount[p.charCodeAt(i)-97]++;
-        scount[s.charCodeAt(i)-97]++;
+    let len_p=p.length;
+    let len_s=s.length;
+    if(len_p>len_s){
+        return [];
     }
-    for(let i=0;i<=s.length-p.length;i++){
-        if(arraysEqual(pcount,scount)) result.push(i);
-        if(i+p.length<s.length){
-            scount[s.charCodeAt(i)-97]--;
-            scount[s.charCodeAt(i+p.length)-97]++;
-        }
-    }
-    return result;
+    const p_freq:number[]= new Array(26).fill(0);
+    const window: number[]= new Array(26).fill(0);
 
-    function arraysEqual(a:number[],b:number[]): boolean{
-        for(let i=0;i<26;i++){
-            if(a[i]!==b[i]){
-                return false;
-            }
-        }
-        return true;
+    for(let i=0; i<len_p;i++){
+        p_freq[p.charCodeAt(i)-97]++;
+        window[s.charCodeAt(i)-97]++;
     }
+    const ans:number[]=[];
+    if(p_freq.toString()===window.toString()){
+        ans.push(0);//if 1st sliding windown matches
+    }
+    for (let i=len_p;i<len_s;i++){
+        window[s.charCodeAt(i-len_p)-97]--;//left
+        window[s.charCodeAt(i)-97]++;//right window
+
+        if(p_freq.toString()==window.toString()){
+            ans.push(i-len_p+1);
+        }
+    }
+    return ans;
 };

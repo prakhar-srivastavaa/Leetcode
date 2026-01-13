@@ -3,8 +3,6 @@ function minWindow(s: string, t: string): string {
 
   const tFreq = new Map<string, number>();
   const windowFreq = new Map<string, number>();
-
-  // Store frequency of characters in t
   for (const c of t) {
     tFreq.set(c, (tFreq.get(c) ?? 0) + 1);
   }
@@ -14,7 +12,6 @@ function minWindow(s: string, t: string): string {
   let minLength = Number.MAX_SAFE_INTEGER;
   let start = 0;
 
-  // Expand the window with the right pointer
   while (right < s.length) {
     const c = s[right];
     windowFreq.set(c, (windowFreq.get(c) ?? 0) + 1);
@@ -23,14 +20,12 @@ function minWindow(s: string, t: string): string {
       matched++;
     }
 
-    // If all characters are matched, try to shrink the window
     while (matched === tFreq.size) {
       if (right - left + 1 < minLength) {
         minLength = right - left + 1;
         start = left;
       }
 
-      // Remove the character at the left pointer from the window
       const leftChar = s[left];
       if (windowFreq.has(leftChar)) {
         windowFreq.set(leftChar, (windowFreq.get(leftChar) as number) - 1);

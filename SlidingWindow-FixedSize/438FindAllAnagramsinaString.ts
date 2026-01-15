@@ -7,7 +7,7 @@ function findAnagrams(s: string, p: string): number[] {
     let sCount: number []= new Array(26).fill(0);
  // storing a-z in array with a as 0 and z as 25 for str p and s
     for(let i=0;i<p.length;i++){
-        pCount[p.charCodeAt(i)-97]++;
+        pCount[p.charCodeAt(i)-'a'.charCodeAt(0)]++; //  'a'.charCodeAt(0)==97
         sCount[s.charCodeAt(i)-97]++;
     }
     

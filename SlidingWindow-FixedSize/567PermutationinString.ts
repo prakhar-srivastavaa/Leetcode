@@ -4,6 +4,7 @@ function checkInclusion(s1: string, s2: string): boolean {
     }
     let s1Count:number[]=new Array(26).fill(0)
     let s2Count:number[]=new Array(26).fill(0)
+    
     for(let i=0;i<s1.length;i++){
         s1Count[s1.charCodeAt(i)-'a'.charCodeAt(0)]++
         s2Count[s2.charCodeAt(i)-97]++

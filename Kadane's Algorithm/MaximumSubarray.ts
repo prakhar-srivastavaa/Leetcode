@@ -1,13 +1,9 @@
 function maxSubArray(nums: number[]): number {
-  let currentSum = nums[0]; // Start with the first element
-  let maxSum = nums[0];     // Initialize maxSum with the first element
-
-  // Traverse the array from the second element
-  for (let i = 1; i < nums.length; i++) {
-    // If currentSum is negative, reset to current element
-    currentSum = Math.max(nums[i], currentSum + nums[i]);
-    // Update maxSum if currentSum is greater
-    maxSum = Math.max(maxSum, currentSum);
-  }
-  return maxSum;
+    let currSum=nums[0];
+    let maxSum=nums[0];//starting both with first element 
+    for (let i=1;i<nums.length;i++){// starting from 2nd element because 1st is already considered
+        currSum=Math.max(nums[i],currSum+nums[i])// deciding whether to add current element to existing subarray or start new subarray from current element
+        maxSum=Math.max(maxSum,currSum)
+    }
+    return maxSum;
 }

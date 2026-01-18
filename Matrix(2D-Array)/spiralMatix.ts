@@ -1,30 +1,41 @@
-function spiralOrderTs(matrix: number[][]): number[] {
+function spiralOrder(matrix: number[][]): number[] {
     const result: number[] = [];
     if (matrix == null || matrix.length === 0) {
         return result;
     }
 
-    const m = matrix.length;
-    const n = matrix[0].length;
-    const visited: boolean[][] = Array.from({ length: m }, () => Array(n).fill(false));
-    const dr: number[] = [0, 1, 0, -1]; // direction control array for row
-    const dc: number[] = [1, 0, -1, 0]; // direction control array for column
-    let r = 0, c = 0, di = 0; // start from top-left corner
+    let top = 0;
+    let bottom = matrix.length - 1;
+    let left = 0;
+    let right = matrix[0].length - 1;
 
-    for (let i = 0; i < m * n; i++) {
-        result.push(matrix[r][c]);
-        visited[r][c] = true;
-        const newR = r + dr[di];
-        const newC = c + dc[di];
+    while (top <= bottom && left <= right) {
+        // Traverse from left to right on the current top row
+        for (let i = left; i <= right; i++) {
+            result.push(matrix[top][i]);
+        }
+        top++;  // Shift the top boundary down
 
-        // If the new coordinates are out of bounds or already visited, switch direction
-        if (newR >= 0 && newR < m && newC >= 0 && newC < n && !visited[newR][newC]) {
-            r = newR; // move to the next cell in current direction
-            c = newC;
-        } else {
-            di = (di + 1) % 4; // change the direction
-            r += dr[di];
-            c += dc[di];
+        // Traverse from top to bottom on the current right column
+        for (let i = top; i <= bottom; i++) {
+            result.push(matrix[i][right]);
+        }
+        right--;  // Shift the right boundary left
+
+        // Traverse from right to left on the current bottom row if top <= bottom
+        if (top <= bottom) {
+            for (let i = right; i >= left; i--) {
+                result.push(matrix[bottom][i]);
+            }
+            bottom--;  // Shift the bottom boundary up
+        }
+
+        // Traverse from bottom to top on the current left column if left <= right
+        if (left <= right) {
+            for (let i = bottom; i >= top; i--) {
+                result.push(matrix[i][left]);
+            }
+            left++;  // Shift the left boundary right
         }
     }
 

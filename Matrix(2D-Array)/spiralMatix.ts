@@ -1,43 +1,34 @@
 function spiralOrder(matrix: number[][]): number[] {
-    const result: number[] = [];
-    if (matrix == null || matrix.length === 0) {
-        return result;
-    }
+    let n=matrix.length;//rows
+    let m=matrix[0].length;//col
 
-    let top = 0;
-    let bottom = matrix.length - 1;
-    let left = 0;
-    let right = matrix[0].length - 1;
-
-    while (top <= bottom && left <= right) {
-        // Traverse from left to right on the current top row
-        for (let i = left; i <= right; i++) {
-            result.push(matrix[top][i]);
+    let left= 0, right=m-1;
+    let top=0, bottom=n-1
+    const answer: number[]=[]
+    
+    while(top<=bottom && left<=right){
+        //right
+        for(let i=left;i<=right;i++){
+            answer.push(matrix[top][i]);
         }
-        top++;  // Shift the top boundary down
-
-        // Traverse from top to bottom on the current right column
-        for (let i = top; i <= bottom; i++) {
-            result.push(matrix[i][right]);
+        top++;
+        for(let i=top;i<=bottom;i++){
+            answer.push(matrix[i][right]);
         }
-        right--;  // Shift the right boundary left
-
-        // Traverse from right to left on the current bottom row if top <= bottom
-        if (top <= bottom) {
-            for (let i = right; i >= left; i--) {
-                result.push(matrix[bottom][i]);
+        right--;
+        if(top<=bottom){
+            for(let i=right;i>=left;i--){
+                answer.push(matrix[bottom][i]);
             }
-            bottom--;  // Shift the bottom boundary up
+            bottom--;
         }
-
-        // Traverse from bottom to top on the current left column if left <= right
-        if (left <= right) {
-            for (let i = bottom; i >= top; i--) {
-                result.push(matrix[i][left]);
+        if(left<=right){
+            for(let i=bottom;i>=top;i--){
+                answer.push(matrix[i][left]);
             }
-            left++;  // Shift the left boundary right
+            left++;
         }
     }
+    return answer;
 
-    return result;
 }

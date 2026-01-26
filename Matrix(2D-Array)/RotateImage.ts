@@ -15,6 +15,5 @@ function rotate(matrix: number[][]): void {
     // reverssing now
     for(let i=0;i<n;i++){
         matrix[i].reverse();
-    }
-    
+    } 
 };

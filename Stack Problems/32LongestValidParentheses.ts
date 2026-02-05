@@ -12,10 +12,9 @@ function longestValidParentheses(s: string): number {
             left = right = 0; // reset 
         }
     }
-
     left = 0;
     right = 0;
-
+    
     // right to left
     for (let i = s.length - 1; i >= 0; i--) {
         if (s[i] === "(") left++;
@@ -27,6 +26,5 @@ function longestValidParentheses(s: string): number {
             left = right = 0; // reset
         }
     }
-
     return maxLength;
 };

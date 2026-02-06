@@ -10,6 +10,5 @@ function dailyTemperatures(T: number[]): number[] {
         }
         stack.push(i);
     }
-    
     return result;
 };

@@ -21,6 +21,7 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
         prevnode=temp;
         temp= nextnode;
     }  
+
     return head;
     function findKthNode(head: ListNode | null, k: number): ListNode | null {
     let curr = head;
@@ -28,6 +29,7 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
         curr = curr.next;
         k--;
     }
+    
     return curr;
 }
 function reverse(head: ListNode | null): ListNode | null {

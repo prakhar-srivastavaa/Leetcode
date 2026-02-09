@@ -19,7 +19,6 @@ function largestRectangleArea(heights: number[]): number {
             }
         }
     }
-
     // Remaining bars in stack
     while (stack.length > 0) {
         const top = stack.pop() as number;
@@ -29,6 +28,5 @@ function largestRectangleArea(heights: number[]): number {
             maxArea = area;
         }
     }
-
     return maxArea;
 };

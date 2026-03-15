@@ -14,7 +14,5 @@ function firstMissingPositive(nums: number[]): number {
             return i+1;
         }
     }
-    return nums.length+1;
-
-    
+    return nums.length+1;  
 };
